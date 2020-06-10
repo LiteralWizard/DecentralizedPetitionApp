@@ -1,38 +1,86 @@
-.App {
+html,
+body {
+  margin: 0;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);  
+}
+
+#App {
+  height: 100vh;
+}
+
+#page-wrap {
   text-align: center;
+
+  overflow: auto;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.bm-burger-button {
+    position: fixed;
+    width: 36px;
+    height: 30px;
+    left: 36px;
+    top: 36px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bm-burger-bars {
+    background: #584B53;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.bm-burger-bars-hover {
+    background: #9D5C63;
 }
 
-.App-link {
-  color: #61dafb;
+.bm-cross-button {
+    height: 24px;
+    width: 24px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.bm-cross {
+    background: #FEF5EF;
 }
+
+.bm-menu-wrap {
+    position: fixed;
+    height: 100%;
+}
+
+.bm-menu {
+    background: #9D5C63;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
+}
+
+.bm-morph-shape {
+    fill: #9D5C63;
+}
+
+.bm-item-list {
+    color: #FEF5EF;
+    padding: 0.8em;
+}
+
+.bm-item {
+    display: inline-block;
+}
+
+.bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.aws-btn {
+    --button-default-height: 48px;
+    --button-default-font-size: 14px;
+    --button-default-border-radius: 10px;
+    --button-horizontal-padding: 20px;
+    --button-raise-level: 5px;
+    --button-hover-pressure: 2;
+    --transform-speed: 0.185s;
+    --button-primary-color: rgb(134, 78, 83);
+    --button-primary-color-dark: rgb(112, 66, 70);
+    --button-primary-color-light: rgb(255, 240, 241);
+    --button-primary-color-hover: rgb(145, 84, 90);
+    --button-primary-color-active: rgb(182, 117, 123);
+    --button-primary-border: none;
+}
+
+    

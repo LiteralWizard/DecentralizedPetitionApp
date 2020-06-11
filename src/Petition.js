@@ -63,7 +63,7 @@ class Petition extends Component {
                 color: "#584B53"
             }}>
                 <h1>{this.state.title}</h1>
-                <img src = {this.state.img} style = {{
+                <img src = {this.state.img} alt = "Petition" style = {{
                     maxWidth: "50vw",
                     maxHeight: "50vh",
                     borderRadius: "40px",

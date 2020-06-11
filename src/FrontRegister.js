@@ -84,7 +84,7 @@ class FrontRegister extends Component {
                         <Typography style = {{ paddingTop: "20px" }} component="h1" variant="h5">
                             Registration
                         </Typography>
-                        <Typography style = {{ paddingTop: "10px" }} component="p" variant="p">
+                        <Typography style = {{ paddingTop: "10px" }} component="p" variant="h6">
                             If an account is available we will register your username
                         </Typography>
                         <form className={classes.form} onSubmit = {(event) => {

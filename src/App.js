@@ -63,6 +63,7 @@ class App extends Component {
       accountAddForm: false,
       addPetForm: false,
       petitionVis: true,
+      newRegUser: false,
       petitions: []
     }
   }
@@ -80,7 +81,7 @@ class App extends Component {
 
     this.setState({contractAddr: PETITIONCONTRACT_ADDRESS})
 
-    // const accounts = await web3.eth.getAccounts()
+    const accounts = await web3.eth.getAccounts()
     // this.setState({account: accounts[0]})
 
     const petitionC = new web3.eth.Contract(PETITIONCONTRACT_ABI, PETITIONCONTRACT_ADDRESS)
@@ -92,7 +93,7 @@ class App extends Component {
     // const accAddr = await this.state.petitionContract.methods.getUserSig(accounts[0]).call()
     // console.log(accAddr)
 
-    if(this.state.account === "" && this.state.username !== "") {
+    if(this.state.account === "" && this.state.username !== "" && this.state.newRegUser === false) {
       // console.log(this.state.username)
 
       const accID = await this.state.petitionContract.methods.getUserIDFromName(this.state.username).call()
@@ -122,12 +123,43 @@ class App extends Component {
       }
     }
 
+    if(this.state.account === "" && this.state.username !== "" && this.state.newRegUser === true) {
+      const uTaken = await this.state.petitionContract.methods.getUserIDFromName(this.state.username).call()
+      console.log(uTaken)
+
+      let regConfirmed = true
+
+      if(uTaken === "-1") {
+        this.state.petitionContract.methods.createUser(this.state.username).send({from:
+          accounts[0], gas: 1000000}).then((result) => {}, (error) => {
+            console.log(error)
+            
+            regConfirmed = false
+            // console.log(regConfirmed)
+
+            toast.error(error.toString(), {position: toast.POSITION.BOTTOM_RIGHT})
+          })
+
+        setTimeout(() => {
+          if(regConfirmed) {
+          toast.success("Username Registered. Please login", {position: toast.POSITION.BOTTOM_RIGHT})
+
+          this.setState({loginV: true})
+          this.setState({accountRegForm: false})
+          this.setState({newRegUser: false})
+        }
+        }, 1000)
+
+      }
+      else {
+        toast.error("The Username is Taken", {position: toast.POSITION.BOTTOM_RIGHT})
+      }
+    }
+
     if(!this.state.loginV) {
       const petitionNum = await this.state.petitionContract.methods.getNumPetitions().call({
         from: this.state.account
       })
-
-      let Petitions = []
 
       for(let itr = 0; itr<petitionNum; itr++) {
         let CurrentPet = []
@@ -196,7 +228,13 @@ class App extends Component {
   }
 
   registerAccount = (propUsername) => {
+    setTimeout(() => {
+      this.setState({username: propUsername})
+      console.log(this.state.username)
+      this.setState({newRegUser: true})
 
+      this.loadBlockchainData()
+    }, 2000)
   }
 
   reloadPetitions = (updatePet) => {
@@ -206,10 +244,6 @@ class App extends Component {
       this.setState({petitionVis: true})
       this.loadBlockchainData()
     }, 1000)
-  }
-
-  reloadPetNoCallback() {
-
   }
 
   render() {

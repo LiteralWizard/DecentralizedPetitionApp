@@ -271,6 +271,21 @@ class App extends Component {
                   this.setState({addPetForm: true})
                 }}>
               Add New Petition</AwesomeButton>
+
+              <AwesomeButton style = {{width: "200px", marginTop: "100px"}} type = "primary"
+                onPress = { () => {
+                  this.setState({loginV: true})
+                  this.setState({account: ""})
+                  this.setState({username: ""})
+                  this.setState({isAdmin: false})
+                  this.setState({accountV: false})
+                  this.setState({accountRegForm: false})
+                  this.setState({accountAddForm: false})
+                  this.setState({addPetForm: false})
+                  this.setState({petitionVis: true})
+                  this.setState({newRegUser: false})
+                }}>
+              Log Out</AwesomeButton>
             </Menu>
 
             {/* ############################# ADD ACCOUNT FORM START ############################# */}

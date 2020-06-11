@@ -1,3 +1,7 @@
+// Mashood Ur Rehman        i16-0063
+// Muhammad Raafey Tariq    i16-0259
+// IBC Project
+
 import React, { Component } from 'react'
 
 import { AwesomeButton } from 'react-awesome-button';
@@ -5,6 +9,11 @@ import 'react-awesome-button/dist/themes/theme-c137.css';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
 
 class Petition extends Component {
     constructor(props) {
@@ -22,7 +31,8 @@ class Petition extends Component {
             petitionC: this.props.petitionC,
             account: this.props.account,
 
-            didSign: false
+            didSign: false,
+            whoSignedDialog: false
         }
 
         toast.configure()
@@ -87,6 +97,33 @@ class Petition extends Component {
                 </div>
 
                 <p>Made on {this.state.date}</p>
+
+                {/* #################### WHO SIGNED CODE STARTS #################### */}
+
+                <AwesomeButton onPress={() => {
+                    this.setState({whoSignedDialog:true})
+                }} style = {{width: "20vw", marginBottom: "10px"}} type = "primary">People Who Signed</AwesomeButton>
+
+                <Dialog open={this.state.whoSignedDialog} onClose={() => {
+                this.setState({whoSignedDialog: false})
+                }} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title">People Who Signed</DialogTitle>
+                <DialogContent>
+                    <DialogContentText>
+                    Other people who support this cause.
+                    </DialogContentText>
+
+                    <DialogContentText>
+                    {this.state.sigs.replace(",", " ")}
+                    </DialogContentText>
+                    
+                    <AwesomeButton onPress={() => {
+                        this.setState({whoSignedDialog: false})
+                    }} style = {{width: "20vw", marginBottom: "10px"}} type = "primary">Exit</AwesomeButton>
+                </DialogContent>
+                </Dialog>
+
+                {/* #################### WHO SIGNED CODE END ####################### */}
 
                 {!this.state.didSign ?
                 <AwesomeButton style = {{width: "35vw"}} type = "primary"

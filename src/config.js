@@ -1,3 +1,7 @@
+// Mashood Ur Rehman        i16-0063
+// Muhammad Raafey Tariq    i16-0259
+// IBC Project
+
 export const PETITIONCONTRACT_ADDRESS = "0x155Eeac969f8e3414c50BD50583aE67814021d62"
 export const PETITIONCONTRACT_ABI = [
   {
